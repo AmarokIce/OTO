@@ -1,9 +1,7 @@
 package club.someoneice.oto
 
 import club.someoneice.oto.command.*
-import club.someoneice.oto.command.omo.Backport
-import club.someoneice.oto.command.omo.Rtp
-import club.someoneice.oto.command.omo.SetPort
+import club.someoneice.oto.command.omo.*
 import club.someoneice.oto.data.PlayerData
 import club.someoneice.oto.data.gem.command.OreCommand
 import club.someoneice.oto.data.gem.command.SandmanCommand
@@ -62,6 +60,10 @@ class OTO {
             event.registerServerCommand(Rtp())
             event.registerServerCommand(SetPort())
             event.registerServerCommand(Backport())
+            event.registerServerCommand(Back())
+            event.registerServerCommand(Tpa())
+            event.registerServerCommand(Tpaccept())
+            event.registerServerCommand(Tpdeny())
         }
     }
 }

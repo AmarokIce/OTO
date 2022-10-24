@@ -17,6 +17,8 @@ class SandmanCommand: CommandBase() {
     }
 
     override fun processCommand(sender: ICommandSender, list: Array<String>?) {
+        sender.addChatMessage(ChatComponentTranslation("Sandman Test Now Start!") as IChatComponent)
+
         JsonSandman.sandman()
         sender.addChatMessage(ChatComponentTranslation("Success!") as IChatComponent)
     }

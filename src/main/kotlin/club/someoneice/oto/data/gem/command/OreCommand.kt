@@ -23,8 +23,12 @@ class OreCommand: CommandBase() {
             try { Integer.parseInt(list[0]) }
             catch (e :Exception) { throw Exception("Not Int.") }
         } else {
-            49
+            25
         }
+
+        val allBlock: Int = (2 * chuck * 16) * (2 * chuck * 16)
+
+        sender.addChatMessage(ChatComponentTranslation("Now start get world gen!") as IChatComponent)
 
         for (posX in (0 - chuck * 16) .. (chuck * 16)) {
             for (posY in 0..255) {
@@ -34,7 +38,8 @@ class OreCommand: CommandBase() {
                         getPlayer(sender, sender.commandSenderName),
                         posX,
                         posY,
-                        posZ
+                        posZ,
+                        allBlock
                     )
                 }
             }
