@@ -19,6 +19,8 @@ But you can still put OTO and OMO in your mods dir at same time with no conflict
 
 If you just wanna to have some tp command and wanna lite, OMO is your best chose.
 
+Interested in OMO?  [Let's Go!](https://github.com/AmarokIce/OMO)
+
 **License**
 
 === Pineapple license ===
