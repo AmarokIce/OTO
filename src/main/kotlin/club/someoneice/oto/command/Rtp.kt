@@ -1,7 +1,7 @@
-package club.someoneice.oto.command.omo
+package club.someoneice.oto.command
 
 
-import club.someoneice.oto.config.Config
+import club.someoneice.oto.Config
 import net.minecraft.command.CommandBase
 import net.minecraft.command.ICommandSender
 import net.minecraft.entity.player.EntityPlayerMP

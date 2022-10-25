@@ -1,5 +1,6 @@
-package club.someoneice.oto.data.gem.command
+package club.someoneice.oto.data.gem
 
+import club.someoneice.oto.data.gem.json.JERsJsonHelper
 import club.someoneice.oto.data.gem.json.JsonSandman
 import net.minecraft.command.CommandBase
 import net.minecraft.command.ICommandSender
@@ -18,6 +19,12 @@ class SandmanCommand: CommandBase() {
 
     override fun processCommand(sender: ICommandSender, list: Array<String>?) {
         sender.addChatMessage(ChatComponentTranslation("Sandman Test Now Start!") as IChatComponent)
+        val isJerMode: Boolean = list?.get(0) == "true"
+        if (isJerMode) {
+            sender.addChatMessage(ChatComponentTranslation("[Debug] JER flavor is start!") as IChatComponent)
+            JERJsonMaker.JERJsonMaker()
+            JERsJsonHelper.JsonHelper()
+        }
 
         JsonSandman.sandman()
         sender.addChatMessage(ChatComponentTranslation("Success!") as IChatComponent)

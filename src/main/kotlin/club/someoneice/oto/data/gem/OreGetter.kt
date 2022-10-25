@@ -1,5 +1,6 @@
 package club.someoneice.oto.data.gem
 
+import club.someoneice.oto.data.Util
 import club.someoneice.oto.data.gem.helper.CountSandman
 import club.someoneice.oto.data.gem.helper.DropHelper
 import club.someoneice.oto.data.gem.helper.OreHelper
@@ -10,13 +11,10 @@ import net.minecraft.world.World
 import java.util.*
 
 object OreGetter {
-
-    fun OreGetter(world: World, player: EntityPlayerMP, x: Int, y: Int, z: Int, allBlock: Int) {
-        val oreCount: HashMap<String, CountSandman> = HashMap<String, CountSandman>()
+    fun OreGetter(world: World, player: EntityPlayerMP, x: Int, y: Int, z: Int, allBlock: Double) {
         val block: Block = world.getBlock(x, y, z)
         val blockMeta: Int = world.getBlockMetadata(x, y, z)
         val silk: Boolean = block.canSilkHarvest(world, player, x, y ,z, blockMeta)
-        val allBlock: Int = allBlock
 
         // Sandman, for init.
         val od: HashMap<Int, Double> = HashMap<Int, Double>()
@@ -26,7 +24,7 @@ object OreGetter {
         // if (block == Blocks.air)
         //     return
 
-        if (!Data.OreData.containsKey(block.unlocalizedName)) {
+        if (!Data.OreData.containsKey(Util.getRegisterNameFromBlock(block))) {
             val drop: HashMap<String, HashMap<Int, Double>>? = OreDropGetter.OreDorpGetter(block, world, x, y, z, blockMeta)
             val dropList: ArrayList<DropHelper> = ArrayList<DropHelper>()
             if (drop != null) {
@@ -39,23 +37,23 @@ object OreGetter {
             }
             od.put(y, 1.0)
             val DIMINFO: String = "dim " + world.provider.dimensionId + " : " + world.provider.dimensionName
-            Data.OreData.put(block.unlocalizedName, OreHelper(block.unlocalizedName, od, silk, dropList, DIMINFO))
+            Data.OreData.put(Util.getRegisterNameFromBlock(block), OreHelper(Util.getRegisterNameFromBlock(block), od, silk, dropList, DIMINFO))
         }
 
 
-        if (!oreCount.containsKey(block.unlocalizedName) || !oreCount[block.unlocalizedName]!!.countSandman.containsKey(y) || oreCount[block.unlocalizedName]!!.countSandman[y] == null) {
-            oreCount.put(block.unlocalizedName, CountSandman(sandman))
-            Data.OreData[block.unlocalizedName]!!.ore_distrib.put(y, (oreCount[block.unlocalizedName]!!.countSandman[y]!!.toDouble() / allBlock.toDouble()))
+        if (!Data.OreCount.containsKey(Util.getRegisterNameFromBlock(block)) || !Data.OreCount[Util.getRegisterNameFromBlock(block)]!!.countSandman.containsKey(y) || Data.OreCount[Util.getRegisterNameFromBlock(block)]!!.countSandman[y] == null) {
+            Data.OreCount.put(Util.getRegisterNameFromBlock(block), CountSandman(sandman))
+            Data.OreData[Util.getRegisterNameFromBlock(block)]!!.distrib.put(y, (Data.OreCount[Util.getRegisterNameFromBlock(block)]!!.countSandman[y]!!.toDouble() / allBlock))
         } else {
-            oreCount[block.unlocalizedName]!!.countSandman.put(y, oreCount[block.unlocalizedName]!!.countSandman[y]!! + 1)
-            Data.OreData[block.unlocalizedName]!!.ore_distrib.put(y, (oreCount[block.unlocalizedName]!!.countSandman[y]!!.toDouble() / allBlock.toDouble()))
+            Data.OreCount[Util.getRegisterNameFromBlock(block)]!!.countSandman.put(y, Data.OreCount[Util.getRegisterNameFromBlock(block)]!!.countSandman[y]!! + 1)
+            Data.OreData[Util.getRegisterNameFromBlock(block)]!!.distrib.put(y, (Data.OreCount[Util.getRegisterNameFromBlock(block)]!!.countSandman[y]!!.toDouble() / allBlock))
         }
 
         /*
-        if (!Data.OreData[block.unlocalizedName]!!.ore_distrib.containsKey(y) || Data.OreData[block.unlocalizedName]!!.ore_distrib[y] == null) {
-            Data.OreData[block.unlocalizedName]!!.ore_distrib.put(y, 1)
+        if (!Data.OreData[Util.getRegisterNameFromBlock(block)]!!.ore_distrib.containsKey(y) || Data.OreData[Util.getRegisterNameFromBlock(block)]!!.ore_distrib[y] == null) {
+            Data.OreData[Util.getRegisterNameFromBlock(block)]!!.ore_distrib.put(y, 1)
         } else {
-            Data.OreData[block.unlocalizedName]!!.ore_distrib.put(y, Data.OreData[block.unlocalizedName]!!.ore_distrib[y]!! + 1)
+            Data.OreData[Util.getRegisterNameFromBlock(block)]!!.ore_distrib.put(y, Data.OreData[Util.getRegisterNameFromBlock(block)]!!.ore_distrib[y]!! + 1)
         }
         */
     }

@@ -1,10 +1,9 @@
 package club.someoneice.oto
 
 import club.someoneice.oto.command.*
-import club.someoneice.oto.command.omo.*
 import club.someoneice.oto.data.PlayerData
-import club.someoneice.oto.data.gem.command.OreCommand
-import club.someoneice.oto.data.gem.command.SandmanCommand
+import club.someoneice.oto.data.gem.OreCommand
+import club.someoneice.oto.data.gem.SandmanCommand
 import cpw.mods.fml.common.FMLCommonHandler
 import cpw.mods.fml.common.Mod
 import cpw.mods.fml.common.Mod.EventHandler

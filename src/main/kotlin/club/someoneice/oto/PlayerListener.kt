@@ -1,4 +1,4 @@
-package club.someoneice.oto.event
+package club.someoneice.oto
 
 import club.someoneice.oto.data.PlayerData.Companion.PlayerDataList
 import club.someoneice.oto.data.PlayerDeathData

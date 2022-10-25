@@ -1,6 +1,5 @@
-package club.someoneice.oto.config
+package club.someoneice.oto
 
-import club.someoneice.oto.OTO
 import net.minecraftforge.common.config.Configuration
 
 class Config {

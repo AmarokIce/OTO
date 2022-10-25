@@ -24,20 +24,20 @@ object JsonHelper_JsonStream {
             val iterator: Iterator<String> = dataSet.iterator()
             // val writer: BufferedWriter = Files.newBufferedWriter(pathFile)
             // writer.write(jsonString)
-            val writer: JsonWriter = JsonWriter(pathFile)
+            val writer = JsonWriter(pathFile)
 
             while (iterator.hasNext()) {
                 val blockIt = iterator.next()
 
                 writer.beginObject()
-                writer.name("ore_name").value(data[blockIt]!!.ore_name)
-                writer.name("ore_distrib").value(data[blockIt]!!.ore_distrib.toString())
+                writer.name("ore_name").value(data[blockIt]!!.block)
+                writer.name("ore_distrib").value(data[blockIt]!!.distrib.toString())
                 writer.name("silktouch").value(data[blockIt]!!.silktouch)
                 writer.name("drop_list").value(data[blockIt]!!.dropsList.toString())
                 writer.name("dim").value(data[blockIt]!!.dim)
                 writer.endObject()
             }
-            pathFile.close()
+            writer.close()
 
         } catch (e: Exception) {
             e.printStackTrace()

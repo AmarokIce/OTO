@@ -1,4 +1,4 @@
-package club.someoneice.oto.command.omo
+package club.someoneice.oto.command
 
 
 import club.someoneice.oto.data.PlayerData

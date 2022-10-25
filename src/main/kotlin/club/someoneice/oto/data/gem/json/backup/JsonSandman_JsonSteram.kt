@@ -6,7 +6,7 @@ import java.io.File
 import java.io.FileWriter
 import java.nio.file.Paths
 
-object JsonSandman {
+object JsonSandman_JsonSteram {
     // Debug only. Don't use sandman.
     fun sandman() {
         val gson = Gson()

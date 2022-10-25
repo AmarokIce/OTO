@@ -8,7 +8,7 @@ import java.nio.file.Files
 import java.nio.file.Paths
 import java.util.HashMap
 
-object JsonHelper {
+object JERsJsonHelper {
     fun JsonHelper() {
         val gson = Gson()
         // val jsonString = gson.toJson(Data.OreData)
@@ -23,7 +23,7 @@ object JsonHelper {
         }
 
         try {
-            val iterator: Iterator<String> = Data.OreData.keys.iterator()
+            val iterator: Iterator<String> = Data.JERJsonOreData.keys.iterator()
             val writer: BufferedWriter = Files.newBufferedWriter(pathFile)
             // writer.write(jsonString)
 
@@ -31,7 +31,7 @@ object JsonHelper {
 
             while (iterator.hasNext()) {
                 val blockIt = iterator.next()
-                writer.write(gson.toJson(Data.OreData[blockIt]))
+                writer.write(gson.toJson(Data.JERJsonOreData[blockIt]))
                 if (iterator.hasNext()) {
                     writer.write(",")
                 }

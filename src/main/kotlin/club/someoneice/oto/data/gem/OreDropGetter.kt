@@ -17,15 +17,21 @@ object OreDropGetter {
             return dropList
         }
 
-        for (i in 0 .. 3) {
-            ItemList = ore.getDrops(world, x, y, z, meta, i)
-            if (ItemList != null && ItemList!!.size >= 1) {
-                fortunes.put(i, ItemList!![0].stackSize.toDouble())
-            } else continue
-        }
+        try {
+            for (i in 0..3) {
+                ItemList = ore.getDrops(world, x, y, z, meta, i)
+                if (ItemList != null && ItemList!!.size >= 1) {
+                    fortunes.put(i, ItemList!![0].stackSize.toDouble())
+                } else continue
+            }
 
-        if (ItemList != null && ItemList!!.size >= 1)
-            dropList.put(ItemList!![0].unlocalizedName, fortunes)
+            if (ItemList != null && ItemList!!.size >= 1)
+                dropList.put(ItemList!![0].unlocalizedName, fortunes)
+        } catch (_:NullPointerException) {
+            fortunes.put(0, 0.0)
+            dropList.put("null", fortunes)
+            return dropList
+        }
 
         return if (dropList.size >= 1) dropList
         else null
