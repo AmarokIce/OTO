@@ -28,8 +28,8 @@ object OreGetter {
             val drop: HashMap<String, HashMap<Int, Double>>? = OreDropGetter.OreDorpGetter(block, world, x, y, z, blockMeta)
             val dropList: ArrayList<DropHelper> = ArrayList<DropHelper>()
             if (drop != null) {
-                val dropSet: Set<String> = drop.keys
-                val iterator: Iterator<String> = dropSet.iterator()
+                // val dropSet: Set<String> = drop.keys
+                val iterator: Iterator<String> = drop.keys.iterator()
                 while (iterator.hasNext()) {
                     val name: String = iterator.next()
                     dropList.add(DropHelper(name, drop[name]!!))
@@ -37,7 +37,7 @@ object OreGetter {
             }
             od.put(y, 1.0)
             val DIMINFO: String = "dim " + world.provider.dimensionId + " : " + world.provider.dimensionName
-            Data.OreData.put(Util.getRegisterNameFromBlock(block), OreHelper(Util.getRegisterNameFromBlock(block), od, silk, dropList, DIMINFO))
+            Data.OreData.put(Util.getRegisterNameFromBlock(block), OreHelper(Util.getRegisterNameFromBlock(block) + ":" + blockMeta, od, silk, dropList, DIMINFO))
         }
 
 

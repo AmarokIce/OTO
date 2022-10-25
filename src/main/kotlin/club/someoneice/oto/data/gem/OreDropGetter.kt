@@ -1,5 +1,6 @@
 package club.someoneice.oto.data.gem
 
+import club.someoneice.oto.data.Util
 import net.minecraft.block.Block
 import net.minecraft.init.Blocks
 import net.minecraft.item.ItemStack
@@ -26,7 +27,7 @@ object OreDropGetter {
             }
 
             if (ItemList != null && ItemList!!.size >= 1)
-                dropList.put(ItemList!![0].unlocalizedName, fortunes)
+                dropList.put(Util.getRegisterNameFromItem(ItemList!![0].item), fortunes)
         } catch (_:NullPointerException) {
             fortunes.put(0, 0.0)
             dropList.put("null", fortunes)
